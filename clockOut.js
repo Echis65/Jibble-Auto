@@ -10,7 +10,7 @@ const clockOutScript = async() => {
 
     //getting email and password from .env file
     let email = details.email
-    let password = details.email
+    let password = details.password
     let emailInput = await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[1]/div/div/div/input'))
     const passwordInput  = await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[2]/div/div/div/div[1]/input'))
     await emailInput.sendKeys(email)
