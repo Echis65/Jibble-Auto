@@ -1,16 +1,16 @@
 import { Builder, By, until } from "selenium-webdriver";
-import dotenv from 'dotenv'
+import chrome from 'selenium-webdriver/chrome.js'
+import details from './details.json' assert {type : "json"}
 
-dotenv.config()
-
-const driver = new Builder().forBrowser('chrome').build();
+const service = new chrome.ServiceBuilder('/usr/local/bin/jibAuto/chromedriver');
+const driver = new Builder().forBrowser('chrome').setChromeService(service).build();
 
 const clockOutScript = async() => {
     await driver.get('https://jibble.io/app')
 
     //getting email and password from .env file
-    let email = process.env.EMAIL
-    let password = process.env.PASSWORD
+    let email = details.email
+    let password = details.email
     let emailInput = await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[1]/div/div/div/input'))
     const passwordInput  = await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[2]/div/div/div/div[1]/input'))
     await emailInput.sendKeys(email)
